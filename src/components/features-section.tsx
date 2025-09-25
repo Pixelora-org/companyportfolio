@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client"
 
 import { motion } from "framer-motion"
@@ -6,14 +5,9 @@ import {
   Zap, 
   Target, 
   Sparkles, 
-  Users, 
-  BarChart3, 
-  Shield,
   ArrowRight,
   CheckCircle,
-  Brain,
-  Code,
-  GitBranch
+  Brain
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -48,19 +42,6 @@ const FeaturesSection = () => {
     }
   ]
 
-  const intelligenceFeatures = [
-    {
-      title: "Product Intelligence",
-      description: "Streamline your product development workflows with AI assistance for routine, manual tasks.",
-      features: [
-        "Smart issue assignment suggestions",
-        "Automatic project categorization",
-        "Intelligent duplicate detection",
-        "Performance insights and recommendations"
-      ]
-    }
-  ]
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -79,7 +60,7 @@ const FeaturesSection = () => {
       opacity: 1,
       transition: {
         duration: 0.6,
-        ease: "easeOut",
+        ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
       },
     },
   }
