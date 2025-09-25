@@ -41,7 +41,7 @@ const HeroSection = () => {
         {/* Customer Avatars */}
         <div className="mb-8">
           <p className="text-xs text-gray-400 mb-3">
-            Powering the world's best product teams.
+            Powering the world&#39;s best product teams.
             <br />
             From next-gen startups to established enterprises.
           </p>
