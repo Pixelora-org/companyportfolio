@@ -1,15 +1,15 @@
 "use client"
 
-import { ExternalLink, Github } from "lucide-react"
+import { ExternalLink } from "lucide-react"
 
 const ProjectsSection = () => {
   const projects = [
     {
-      title: "Hotel Ordering System",
-      description: "Complete food ordering system for hotels with real-time order management and payment processing.",
+      title: "VD Cafe - Restaurant Management",
+      description: "Complete restaurant management system with menu ordering, table management, and payment processing.",
       image: "/hotelmanagement.png",
       tech: ["React", "Node.js", "MongoDB", "Stripe"],
-      liveUrl: "https://hotel-ordering.pixelora.com",
+      liveUrl: "https://www.vinayakadarshini.com/",
       githubUrl: "https://github.com/pixelora/hotel-ordering",
       featured: true,
       status: "Live"
@@ -27,9 +27,9 @@ const ProjectsSection = () => {
     {
       title: "Portfolio Website",
       description: "Modern, responsive portfolio website showcasing Pixelora's projects and services.",
-      image: "/next.svg",
+      image: "/prajwalportoflio.png",
       tech: ["Next.js", "Tailwind CSS", "Framer Motion", "TypeScript"],
-      liveUrl: "https://pixelora.com",
+      liveUrl: "#",
       githubUrl: "https://github.com/pixelora/portfolio",
       featured: false,
       status: "In Development"
@@ -104,18 +104,6 @@ const ProjectsSection = () => {
                   {project.description}
                 </p>
                 
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-1 mb-2">
-                  {project.tech.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="px-1 py-0.5 bg-gray-800 text-gray-300 text-xs rounded"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
                 {/* Links */}
                 <div className="flex items-center space-x-2">
                   {project.liveUrl !== "#" ? (
@@ -132,13 +120,6 @@ const ProjectsSection = () => {
                       Coming Soon
                     </span>
                   )}
-                  <a
-                    href={project.githubUrl}
-                    className="flex items-center text-gray-400 hover:text-gray-300 text-xs font-medium transition-colors"
-                  >
-                    <Github className="w-3 h-3 mr-1" />
-                    GitHub
-                  </a>
                 </div>
               </div>
             </div>
@@ -180,18 +161,6 @@ const ProjectsSection = () => {
                   {project.description}
                 </p>
                 
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-1 mb-1">
-                  {project.tech.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="px-1 py-0.5 bg-gray-800 text-gray-300 text-xs rounded"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
                 {/* Links */}
                 <div className="flex items-center space-x-2">
                   {project.liveUrl !== "#" ? (
@@ -208,13 +177,6 @@ const ProjectsSection = () => {
                       Soon
                     </span>
                   )}
-                  <a
-                    href={project.githubUrl}
-                    className="flex items-center text-gray-400 hover:text-gray-300 text-xs font-medium transition-colors"
-                  >
-                    <Github className="w-3 h-3 mr-1" />
-                    Code
-                  </a>
                 </div>
               </div>
             </div>

@@ -18,7 +18,6 @@ const Navigation = () => {
 
   const navItems = [
     { name: "Product", href: "#product" },
-    { name: "Customers", href: "#customers" },
     { name: "Contact", href: "#contact" },
   ]
 
@@ -65,15 +64,6 @@ const Navigation = () => {
             </div>
           </div>
 
-          {/* CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-3">
-            <a
-              href="#contact"
-              className="text-gray-300 hover:text-white text-sm font-medium transition-colors duration-200"
-            >
-              Contact
-            </a>
-          </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden">
