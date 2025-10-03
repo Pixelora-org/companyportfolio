@@ -23,7 +23,7 @@ const CTASection = () => {
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-8">
           <button 
-            onClick={() => window.open('mailto:hello@pixelora.com', '_blank')}
+            onClick={() => window.open('mailto:abhishekvaidya.work@gmail.com', '_blank')}
             className="bg-white text-black hover:bg-gray-100 px-5 py-2 text-sm font-medium rounded-lg transition-all duration-300"
           >
             Contact sales
@@ -37,14 +37,14 @@ const CTASection = () => {
               <Mail className="w-4 h-4 text-white" />
             </div>
             <h3 className="text-xs font-semibold text-white mb-1">Email us</h3>
-            <p className="text-gray-400 text-xs">hello@pixelora.com</p>
+            <p className="text-gray-400 text-xs">abhishekvaidya.work@gmail.com</p>
           </div>
           <div className="text-center">
             <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-2">
               <Phone className="w-4 h-4 text-white" />
             </div>
             <h3 className="text-xs font-semibold text-white mb-1">Call us</h3>
-            <p className="text-gray-400 text-xs">+1 (555) 123-4567</p>
+            <p className="text-gray-400 text-xs">+91 7259173662</p>
           </div>
         </div>
 
