@@ -57,7 +57,7 @@ const ProjectsSection = () => {
   ]
 
   return (
-    <section className="py-8 bg-black" id="product">
+    <section className="min-h-screen flex items-center justify-center bg-black" id="product">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-8">

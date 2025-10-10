@@ -18,7 +18,7 @@ const TestimonialsSection = () => {
   }
 
   return (
-    <section className="py-10 bg-black" id="customers">
+    <section className="min-h-screen flex items-center justify-center bg-black" id="customers">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-8">

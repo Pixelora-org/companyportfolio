@@ -17,6 +17,7 @@ const Navigation = () => {
   }, [])
 
   const navItems = [
+    { name: "About", href: "#about" },
     { name: "Product", href: "#product" },
     { name: "Contact", href: "#contact" },
   ]
@@ -25,7 +26,12 @@ const Navigation = () => {
     if (href.startsWith('#')) {
       const element = document.querySelector(href)
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' })
+        const headerHeight = 56 // Height of fixed header
+        const elementPosition = element.offsetTop - headerHeight
+        window.scrollTo({
+          top: elementPosition,
+          behavior: 'smooth'
+        })
       }
     }
     setIsOpen(false)

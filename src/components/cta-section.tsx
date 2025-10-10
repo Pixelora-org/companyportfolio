@@ -4,7 +4,7 @@ import { Mail, Phone } from "lucide-react"
 
 const CTASection = () => {
   return (
-    <section className="relative py-10 bg-black" id="contact">
+    <section className="relative min-h-screen flex items-center justify-center bg-black" id="contact">
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Main CTA */}
         <div className="mb-8">
