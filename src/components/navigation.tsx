@@ -24,7 +24,7 @@ const Navigation = () => {
 
   const handleNavClick = (href: string) => {
     if (href.startsWith('#')) {
-      const element = document.querySelector(href)
+      const element = document.querySelector(href) as HTMLElement
       if (element) {
         const headerHeight = 56 // Height of fixed header
         const elementPosition = element.offsetTop - headerHeight
