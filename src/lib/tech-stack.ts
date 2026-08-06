@@ -1,0 +1,18 @@
+export const techStack = [
+  "React",
+  "Next.js",
+  "TypeScript",
+  "OpenAI",
+  "Anthropic",
+  "Vercel AI SDK",
+  "LangChain",
+  "Node.js",
+  "PostgreSQL",
+  "Pinecone",
+  "Supabase",
+  "Tailwind",
+  "Prisma",
+  "Stripe",
+  "Vercel",
+  "AWS",
+] as const

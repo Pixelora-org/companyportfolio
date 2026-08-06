@@ -1,88 +1,201 @@
 "use client"
 
 import { useState } from "react"
-import { MessageCircle } from "lucide-react"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Loader2, MessageCircle, CheckCircle2, AlertCircle } from "lucide-react"
+import Reveal from "@/components/reveal"
+import MagneticButton from "@/components/magnetic-button"
+import {
+  feedbackSchema,
+  type FeedbackInput,
+} from "@/lib/feedback-schema"
+import { cn } from "@/lib/utils"
+
+type SubmitState = "idle" | "loading" | "success" | "error"
 
 const TestimonialsSection = () => {
-  const [comment, setComment] = useState("")
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
+  const [status, setStatus] = useState<SubmitState>("idle")
+  const [serverError, setServerError] = useState<string | null>(null)
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle comment submission here
-    console.log({ name, email, comment })
-    setComment("")
-    setName("")
-    setEmail("")
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FeedbackInput>({
+    resolver: zodResolver(feedbackSchema),
+    defaultValues: { name: "", email: "", comment: "" },
+  })
+
+  const onSubmit = async (data: FeedbackInput) => {
+    setStatus("loading")
+    setServerError(null)
+
+    try {
+      const res = await fetch("/api/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+      const json = await res.json().catch(() => ({}))
+
+      if (!res.ok) {
+        setStatus("error")
+        setServerError(
+          json.error ||
+            "Something went wrong. Please try again or email us directly."
+        )
+        return
+      }
+
+      setStatus("success")
+      reset()
+    } catch {
+      setStatus("error")
+      setServerError("Network error. Check your connection and try again.")
+    }
   }
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-black" id="customers">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-            Share Your Experience
-          </h2>
-          <p className="text-sm text-gray-300 max-w-xl mx-auto">
-            We&apos;d love to hear from our clients. Share your feedback and help us improve our services.
+    <section
+      aria-labelledby="feedback-heading"
+      className="relative py-16 sm:py-24 lg:py-32"
+      id="feedback"
+    >
+      <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+        <Reveal className="text-center">
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime">
+            Feedback
           </p>
-        </div>
+          <h2
+            id="feedback-heading"
+            className="mt-3 font-display text-3xl font-extrabold tracking-[-0.03em] text-foreground sm:text-4xl md:text-5xl"
+          >
+            Tell us how
+            <br />
+            <span className="text-muted-foreground">we did.</span>
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-sm text-muted-foreground sm:text-base">
+            Honest notes from clients help us ship sharper work next time.
+          </p>
+        </Reveal>
 
-        {/* Comment Form */}
-        <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid md:grid-cols-2 gap-4">
+        <Reveal delay={0.1} className="mt-8 sm:mt-10">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="space-y-4 rounded-2xl border border-border bg-card p-4 shadow-sm sm:p-6 md:p-8"
+            noValidate
+          >
+            <div className="grid gap-4 md:grid-cols-2">
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label
+                  htmlFor="feedback-name"
+                  className="mb-2 block text-sm font-medium text-foreground"
+                >
                   Your Name
                 </label>
                 <input
+                  id="feedback-name"
                   type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:outline-none focus:border-blue-500"
+                  autoComplete="name"
+                  className={cn(
+                    "w-full rounded-xl border bg-background px-3 py-3 text-base text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-lime focus:ring-2 focus:ring-lime/30 sm:py-2.5 sm:text-sm",
+                    errors.name ? "border-destructive" : "border-input"
+                  )}
                   placeholder="Enter your name"
-                  required
+                  {...register("name")}
                 />
+                {errors.name && (
+                  <p className="mt-1.5 text-xs text-destructive">
+                    {errors.name.message}
+                  </p>
+                )}
               </div>
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label
+                  htmlFor="feedback-email"
+                  className="mb-2 block text-sm font-medium text-foreground"
+                >
                   Email
                 </label>
                 <input
+                  id="feedback-email"
                   type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:outline-none focus:border-blue-500"
+                  autoComplete="email"
+                  className={cn(
+                    "w-full rounded-xl border bg-background px-3 py-3 text-base text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-lime focus:ring-2 focus:ring-lime/30 sm:py-2.5 sm:text-sm",
+                    errors.email ? "border-destructive" : "border-input"
+                  )}
                   placeholder="Enter your email"
-                  required
+                  {...register("email")}
                 />
+                {errors.email && (
+                  <p className="mt-1.5 text-xs text-destructive">
+                    {errors.email.message}
+                  </p>
+                )}
               </div>
             </div>
+
             <div>
-              <label className="block text-sm font-medium text-white mb-2">
+              <label
+                htmlFor="feedback-comment"
+                className="mb-2 block text-sm font-medium text-foreground"
+              >
                 Your Feedback
               </label>
               <textarea
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
+                id="feedback-comment"
                 rows={4}
-                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm focus:outline-none focus:border-blue-500"
+                className={cn(
+                  "w-full resize-y rounded-xl border bg-background px-3 py-3 text-base text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-lime focus:ring-2 focus:ring-lime/30 sm:py-2.5 sm:text-sm",
+                  errors.comment ? "border-destructive" : "border-input"
+                )}
                 placeholder="Share your experience working with us..."
-                required
+                {...register("comment")}
               />
+              {errors.comment && (
+                <p className="mt-1.5 text-xs text-destructive">
+                  {errors.comment.message}
+                </p>
+              )}
             </div>
-            <button
+
+            <MagneticButton
               type="submit"
-              className="w-full bg-gradient-to-r from-blue-400 to-purple-400 hover:from-blue-500 hover:to-purple-500 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200 flex items-center justify-center"
+              disabled={status === "loading"}
+              className="w-full"
             >
-              <MessageCircle className="w-4 h-4 mr-2" />
-              Submit Feedback
-            </button>
+              {status === "loading" ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Sending…
+                </>
+              ) : (
+                <>
+                  <MessageCircle className="mr-2 h-4 w-4" aria-hidden="true" />
+                  Submit Feedback
+                </>
+              )}
+            </MagneticButton>
+
+            <div aria-live="polite" className="min-h-[1.25rem]">
+              {status === "success" && (
+                <p className="flex items-center justify-center gap-2 text-sm text-emerald-600 dark:text-emerald-300">
+                  <CheckCircle2 className="h-4 w-4" />
+                  Thanks — your feedback was saved.
+                </p>
+              )}
+              {status === "error" && serverError && (
+                <p className="flex items-center justify-center gap-2 text-sm text-destructive">
+                  <AlertCircle className="h-4 w-4 shrink-0" />
+                  {serverError}
+                </p>
+              )}
+            </div>
           </form>
-        </div>
+        </Reveal>
       </div>
     </section>
   )

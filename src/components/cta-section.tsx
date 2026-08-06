@@ -1,57 +1,141 @@
 "use client"
 
-import { Mail, Phone } from "lucide-react"
+import { Calendar, Mail, MessageCircle, Phone } from "lucide-react"
+import Reveal from "@/components/reveal"
+import MagneticButton from "@/components/magnetic-button"
+import {
+  getPrimaryBookingLabel,
+  getPrimaryBookingUrl,
+  siteConfig,
+} from "@/lib/site"
 
 const CTASection = () => {
+  const primaryBookingUrl = getPrimaryBookingUrl()
+  const primaryBookingLabel = getPrimaryBookingLabel()
+  const hasCalendly = Boolean(siteConfig.calendlyUrl)
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-black" id="contact">
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* Main CTA */}
-        <div className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-            Plan the present.
-            <br />
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              Build the future.
-            </span>
-          </h2>
-          <p className="text-sm text-gray-300 mb-6 max-w-xl mx-auto">
-            Ready to transform your product development? Join thousands of teams already building better products with Pixelora.
+    <section
+      aria-labelledby="contact-heading"
+      className="relative overflow-hidden py-16 sm:py-24 lg:py-32"
+      id="contact"
+    >
+      <div className="relative z-10 mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
+        <Reveal>
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime">
+            Contact
           </p>
-        </div>
-
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-8">
-          <button 
-            onClick={() => window.open('mailto:abhishekvaidya.work@gmail.com', '_blank')}
-            className="bg-white text-black hover:bg-gray-100 px-5 py-2 text-sm font-medium rounded-lg transition-all duration-300"
+          <h2
+            id="contact-heading"
+            className="mt-3 font-display text-3xl font-extrabold tracking-[-0.03em] text-foreground sm:text-5xl md:text-6xl"
           >
-            Contact sales
-          </button>
-        </div>
+            Got an idea?
+            <br />
+            <span className="text-lime">Let&apos;s make it real.</span>
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-[0.95rem] text-muted-foreground sm:mt-5 sm:text-base">
+            Book a call or ping us on WhatsApp — tell us what you&apos;re
+            building and we&apos;ll help you design, ship, and add AI where it
+            counts.
+          </p>
+        </Reveal>
 
-        {/* Contact Info */}
-        <div className="grid md:grid-cols-2 gap-6 max-w-xl mx-auto mb-8">
-          <div className="text-center">
-            <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-2">
-              <Mail className="w-4 h-4 text-white" />
-            </div>
-            <h3 className="text-xs font-semibold text-white mb-1">Email us</h3>
-            <p className="text-gray-400 text-xs">abhishekvaidya.work@gmail.com</p>
-          </div>
-          <div className="text-center">
-            <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-2">
-              <Phone className="w-4 h-4 text-white" />
-            </div>
-            <h3 className="text-xs font-semibold text-white mb-1">Call us</h3>
-            <p className="text-gray-400 text-xs">+91 7259173662</p>
-          </div>
-        </div>
+        <Reveal
+          delay={0.1}
+          className="mt-7 flex flex-col items-stretch justify-center gap-3 sm:mt-9 sm:flex-row sm:items-center sm:justify-center"
+        >
+          <MagneticButton
+            className="w-full sm:w-auto"
+            onClick={() =>
+              window.open(primaryBookingUrl, "_blank", "noopener,noreferrer")
+            }
+          >
+            {hasCalendly ? (
+              <Calendar className="mr-2 h-4 w-4" aria-hidden="true" />
+            ) : (
+              <MessageCircle className="mr-2 h-4 w-4" aria-hidden="true" />
+            )}
+            {primaryBookingLabel}
+          </MagneticButton>
+          {hasCalendly && (
+            <a
+              href={siteConfig.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-border bg-surface/60 px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-lime touch-manipulation sm:w-auto"
+            >
+              <MessageCircle className="h-4 w-4" aria-hidden="true" />
+              WhatsApp
+            </a>
+          )}
+        </Reveal>
 
-        {/* Footer */}
-        <div className="pt-6 border-t border-gray-800 text-center text-gray-500 text-xs">
-          <p>&copy; 2024 Pixelora. All rights reserved.</p>
-        </div>
+        <Reveal delay={0.15}>
+          <div className="mx-auto mt-10 grid max-w-2xl gap-3 sm:mt-14 sm:grid-cols-2 sm:gap-4">
+            {hasCalendly && (
+              <a
+                href={siteConfig.calendlyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-2xl border border-border bg-card p-5 text-left transition-colors hover:border-lime"
+              >
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-background text-lime">
+                  <Calendar className="h-4 w-4" aria-hidden="true" />
+                </div>
+                <h3 className="font-display text-sm font-bold text-foreground">
+                  Book a call
+                </h3>
+                <p className="mt-1 font-mono text-[11px] text-muted-foreground">
+                  Pick a time on Calendly
+                </p>
+              </a>
+            )}
+            <a
+              href={siteConfig.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-2xl border border-border bg-card p-5 text-left transition-colors hover:border-lime"
+            >
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-background text-lime">
+                <MessageCircle className="h-4 w-4" aria-hidden="true" />
+              </div>
+              <h3 className="font-display text-sm font-bold text-foreground">
+                WhatsApp
+              </h3>
+              <p className="mt-1 font-mono text-[11px] text-muted-foreground">
+                {siteConfig.phone}
+              </p>
+            </a>
+            <a
+              href={`mailto:${siteConfig.email}`}
+              className="rounded-2xl border border-border bg-card p-5 text-left transition-colors hover:border-lime"
+            >
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-background text-lime">
+                <Mail className="h-4 w-4" aria-hidden="true" />
+              </div>
+              <h3 className="font-display text-sm font-bold text-foreground">
+                Email us
+              </h3>
+              <p className="mt-1 break-all font-mono text-[11px] text-muted-foreground">
+                {siteConfig.email}
+              </p>
+            </a>
+            <a
+              href={`tel:${siteConfig.phone.replace(/\s/g, "")}`}
+              className="rounded-2xl border border-border bg-card p-5 text-left transition-colors hover:border-lime"
+            >
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-background text-lime">
+                <Phone className="h-4 w-4" aria-hidden="true" />
+              </div>
+              <h3 className="font-display text-sm font-bold text-foreground">
+                Call us
+              </h3>
+              <p className="mt-1 font-mono text-[11px] text-muted-foreground">
+                {siteConfig.phone}
+              </p>
+            </a>
+          </div>
+        </Reveal>
       </div>
     </section>
   )

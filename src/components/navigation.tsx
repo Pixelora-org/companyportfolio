@@ -1,103 +1,142 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Link from "next/link"
+import { AnimatePresence, motion } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
+import ThemeToggle from "@/components/theme-toggle"
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
-    }
-    window.addEventListener("scroll", handleScroll)
+    const handleScroll = () => setScrolled(window.scrollY > 16)
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  useEffect(() => {
+    if (!isOpen) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    return () => {
+      document.body.style.overflow = prev
+    }
+  }, [isOpen])
+
   const navItems = [
     { name: "About", href: "#about" },
-    { name: "Product", href: "#product" },
+    { name: "AI", href: "#ai" },
+    { name: "Work", href: "#work" },
     { name: "Contact", href: "#contact" },
   ]
 
   const handleNavClick = (href: string) => {
-    if (href.startsWith('#')) {
-      const element = document.querySelector(href) as HTMLElement
-      if (element) {
-        const headerHeight = 56 // Height of fixed header
-        const elementPosition = element.offsetTop - headerHeight
-        window.scrollTo({
-          top: elementPosition,
-          behavior: 'smooth'
-        })
-      }
+    const element = document.querySelector(href) as HTMLElement | null
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop - 72,
+        behavior: "smooth",
+      })
     }
     setIsOpen(false)
   }
 
   return (
     <nav
+      aria-label="Primary"
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled
-          ? "bg-black/80 backdrop-blur-md border-b border-gray-800"
+        scrolled || isOpen
+          ? "border-b border-border bg-background/85 backdrop-blur-xl"
           : "bg-transparent"
       )}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-14">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <a href="#" className="text-lg font-semibold text-white">
-              Pixelora
-            </a>
-          </div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-6">
-              {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => handleNavClick(item.href)}
-                  className="text-gray-300 hover:text-white px-2 py-1 text-sm font-medium transition-colors duration-200"
-                >
-                  {item.name}
-                </button>
-              ))}
-            </div>
-          </div>
-
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-300 hover:text-white p-2"
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between sm:h-[4.25rem]">
+          <Link
+            href="/"
+            className="group inline-flex items-center gap-2 font-display text-lg font-extrabold tracking-tight text-foreground sm:gap-2.5 sm:text-xl"
+            onClick={() => setIsOpen(false)}
+          >
+            <span
+              aria-hidden="true"
+              className="relative grid h-8 w-8 place-items-center overflow-hidden rounded-lg bg-foreground text-[11px] font-bold text-background"
             >
-              {isOpen ? <X size={20} /> : <Menu size={20} />}
+              <span className="absolute inset-0 bg-lime opacity-0 transition-opacity group-hover:opacity-100" />
+              <span className="relative">Px</span>
+            </span>
+            Pixelora
+          </Link>
+
+          <div className="hidden items-center gap-1 md:flex">
+            <ul className="m-0 flex list-none items-center p-0">
+              {navItems.map((item) => (
+                <li key={item.name}>
+                  <button
+                    type="button"
+                    onClick={() => handleNavClick(item.href)}
+                    className="nav-link px-3 py-2 font-mono text-[12px] uppercase tracking-[0.16em] text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    {item.name}
+                  </button>
+                </li>
+              ))}
+            </ul>
+            <ThemeToggle className="ml-3" />
+          </div>
+
+          <div className="flex items-center gap-1.5 md:hidden">
+            <ThemeToggle />
+            <button
+              type="button"
+              onClick={() => setIsOpen(!isOpen)}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-foreground touch-manipulation"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
+              aria-controls="mobile-navigation"
+            >
+              {isOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black border-t border-gray-800">
-              {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => handleNavClick(item.href)}
-                  className="text-gray-300 hover:text-white block px-3 py-2 text-sm font-medium w-full text-left"
-                >
-                  {item.name}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              id="mobile-navigation"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+              className="overflow-hidden border-t border-border md:hidden"
+            >
+              <ul className="m-0 list-none space-y-1 p-0 py-4">
+                {navItems.map((item, i) => (
+                  <motion.li
+                    key={item.name}
+                    initial={{ opacity: 0, x: -8 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.04 * i }}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => handleNavClick(item.href)}
+                      className="flex min-h-12 w-full items-center px-2 text-left font-display text-2xl font-bold tracking-tight text-foreground touch-manipulation"
+                    >
+                      <span className="mr-3 font-mono text-xs text-lime">
+                        0{i + 1}
+                      </span>
+                      {item.name}
+                    </button>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </nav>
   )
