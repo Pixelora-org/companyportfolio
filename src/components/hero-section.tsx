@@ -188,7 +188,7 @@ const HeroSection = () => {
                 href={siteConfig.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm font-medium text-foreground backdrop-blur transition-colors hover:border-lime touch-manipulation sm:min-h-0 sm:w-auto"
+                className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-border bg-card px-4 py-3 text-sm font-medium text-foreground transition-colors hover:border-lime touch-manipulation sm:min-h-0 sm:w-auto"
               >
                 <MessageCircle className="h-4 w-4" aria-hidden="true" />
                 WhatsApp
@@ -197,7 +197,7 @@ const HeroSection = () => {
               <button
                 type="button"
                 onClick={scrollToWork}
-                className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-border bg-surface/60 px-4 py-3 text-sm font-medium text-foreground backdrop-blur transition-colors hover:border-lime touch-manipulation sm:min-h-0 sm:w-auto"
+                className="group inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-border bg-card px-4 py-3 text-sm font-medium text-foreground transition-colors hover:border-lime touch-manipulation sm:min-h-0 sm:w-auto"
               >
                 See the work
                 <ArrowDownRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
@@ -233,7 +233,7 @@ const HeroSection = () => {
                       sizes="(max-width: 1024px) 78vw, 280px"
                       priority
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/85 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/55 via-foreground/5 to-transparent dark:from-background/85 dark:via-transparent" />
                     <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-end justify-between gap-2">
                       <span className="truncate font-display text-sm font-bold text-foreground">
                         {project.title}
@@ -274,7 +274,7 @@ const HeroSection = () => {
                   sizes="(min-width: 1024px) 28vw, 400px"
                   priority={i === 0}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/55 via-foreground/5 to-transparent dark:from-background/80 dark:via-transparent" />
                 <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-2">
                   <span className="font-display text-sm font-bold text-foreground">
                     {project.title}
@@ -295,7 +295,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 z-10 border-t border-border/70 bg-background/50 pb-[env(safe-area-inset-bottom)] backdrop-blur-md">
+      <div className="absolute bottom-0 left-0 right-0 z-10 border-t border-border bg-background/95 pb-[env(safe-area-inset-bottom)] dark:bg-background/70 dark:backdrop-blur-md">
         <div
           className="marquee-track marquee-mask overflow-hidden py-2.5 sm:py-3"
           aria-label="Technologies we use"

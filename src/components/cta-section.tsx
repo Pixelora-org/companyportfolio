@@ -62,7 +62,7 @@ const CTASection = () => {
               href={siteConfig.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-border bg-surface/60 px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-lime touch-manipulation sm:w-auto"
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-border bg-card px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-lime touch-manipulation sm:w-auto"
             >
               <MessageCircle className="h-4 w-4" aria-hidden="true" />
               WhatsApp

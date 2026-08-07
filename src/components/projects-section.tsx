@@ -29,7 +29,7 @@ function ProjectCard({
         type="button"
         onClick={() => onOpen(project)}
         className="block w-full text-left touch-manipulation"
-        aria-label={`Open engagement details for ${project.title}`}
+        aria-label={`Open project details for ${project.title}`}
       >
         <div className="relative aspect-[16/10] sm:aspect-video">
           <ProjectImage
@@ -40,7 +40,7 @@ function ProjectCard({
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 560px"
           />
           <div
-            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/70 via-background/10 to-transparent"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-foreground/40 via-transparent to-transparent dark:from-background/70 dark:via-background/10"
             aria-hidden="true"
           />
           <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">
@@ -49,7 +49,7 @@ function ProjectCard({
                 "rounded-md px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wide",
                 project.kind === "product"
                   ? "bg-lime text-lime-foreground"
-                  : "bg-background/85 text-foreground backdrop-blur"
+                  : "bg-card/95 text-foreground shadow-sm dark:bg-background/85 dark:backdrop-blur"
               )}
             >
               {project.kind === "product" ? "Product" : "Client"}
@@ -107,7 +107,7 @@ function ProjectCard({
             onClick={() => onOpen(project)}
             className="min-h-10 text-sm font-medium text-foreground underline-offset-4 hover:underline touch-manipulation sm:min-h-0"
           >
-            View engagement
+            View project
           </button>
           {project.liveUrl ? (
             <a
@@ -204,7 +204,7 @@ const ProjectsSection = () => {
             >
               Selected
               <br />
-              <span className="text-muted-foreground">engagements.</span>
+              <span className="text-muted-foreground">projects.</span>
             </h2>
             <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-[0.95rem]">
               Product builds and client websites designed and engineered by the
@@ -305,7 +305,7 @@ const ProjectsSection = () => {
       <AnimatePresence>
         {active && (
           <motion.div
-            className="fixed inset-0 z-[60] flex items-end justify-center bg-background/75 p-0 backdrop-blur-md sm:items-center sm:p-4"
+            className="fixed inset-0 z-[60] flex items-end justify-center bg-foreground/25 p-0 backdrop-blur-sm sm:items-center sm:p-4 dark:bg-background/75 dark:backdrop-blur-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -342,7 +342,7 @@ const ProjectsSection = () => {
                   type="button"
                   onClick={() => setActive(null)}
                   className="absolute right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-background/85 text-foreground backdrop-blur touch-manipulation"
-                  aria-label="Close engagement details"
+                  aria-label="Close project details"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -354,7 +354,7 @@ const ProjectsSection = () => {
                     <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-lime">
                       {active.kind === "product"
                         ? "Pixelora product"
-                        : "Client engagement"}
+                        : "Client project"}
                     </p>
                     <h3
                       id="project-modal-title"

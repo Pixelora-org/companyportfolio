@@ -4,34 +4,34 @@
 
 @layer base {
   :root {
-    --background: 40 20% 97%;
+    --background: 150 12% 96%;
     --foreground: 160 30% 6%;
-    --surface: 40 30% 99%;
-    --card: 40 30% 99%;
+    --surface: 0 0% 100%;
+    --card: 0 0% 100%;
     --card-foreground: 160 30% 6%;
-    --popover: 40 30% 99%;
+    --popover: 0 0% 100%;
     --popover-foreground: 160 30% 6%;
     --primary: 160 30% 6%;
-    --primary-foreground: 40 20% 97%;
-    --secondary: 160 10% 92%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 155 10% 92%;
     --secondary-foreground: 160 30% 6%;
-    --muted: 160 10% 92%;
-    --muted-foreground: 160 8% 38%;
-    --accent: 160 10% 92%;
+    --muted: 155 10% 93%;
+    --muted-foreground: 160 8% 36%;
+    --accent: 155 10% 92%;
     --accent-foreground: 160 30% 6%;
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
-    --border: 160 10% 86%;
-    --input: 160 10% 86%;
-    --ring: 158 100% 38%;
-    --lime: 158 100% 38%;
+    --border: 155 10% 84%;
+    --input: 155 10% 84%;
+    --ring: 158 100% 34%;
+    --lime: 158 100% 34%;
     --lime-foreground: 160 30% 6%;
-    --hot: 18 100% 58%;
-    --mesh-1: 158 70% 72%;
-    --mesh-2: 200 80% 78%;
-    --mesh-3: 18 90% 72%;
+    --hot: 18 100% 52%;
+    --mesh-1: 158 45% 78%;
+    --mesh-2: 200 40% 82%;
+    --mesh-3: 18 50% 80%;
     --radius: 0.5rem;
-    --grid-line: 160 10% 86%;
+    --grid-line: 155 10% 88%;
   }
 
   .dark {
@@ -118,6 +118,12 @@
   .hero-mesh::after,
   .hero-mesh .blob {
     filter: blur(60px);
+    opacity: 0.2;
+  }
+
+  .dark .hero-mesh::before,
+  .dark .hero-mesh::after,
+  .dark .hero-mesh .blob {
     opacity: 0.4;
   }
 
@@ -155,10 +161,16 @@
 /* Full-bleed atmosphere */
 .site-grid {
   background-image:
-    linear-gradient(to right, hsl(var(--grid-line) / 0.55) 1px, transparent 1px),
-    linear-gradient(to bottom, hsl(var(--grid-line) / 0.55) 1px, transparent 1px);
+    linear-gradient(to right, hsl(var(--grid-line) / 0.35) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--grid-line) / 0.35) 1px, transparent 1px);
   background-size: 72px 72px;
   mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black, transparent);
+}
+
+.dark .site-grid {
+  background-image:
+    linear-gradient(to right, hsl(var(--grid-line) / 0.55) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--grid-line) / 0.55) 1px, transparent 1px);
 }
 
 .hero-mesh {
@@ -175,8 +187,14 @@
   position: absolute;
   border-radius: 9999px;
   filter: blur(90px);
-  opacity: 0.55;
+  opacity: 0.28;
   will-change: transform;
+}
+
+.dark .hero-mesh::before,
+.dark .hero-mesh::after,
+.dark .hero-mesh .blob {
+  opacity: 0.55;
 }
 
 .hero-mesh::before {
@@ -222,15 +240,16 @@
 .noise-overlay {
   position: absolute;
   inset: 0;
-  opacity: 0.045;
+  opacity: 0.02;
   pointer-events: none;
-  mix-blend-mode: overlay;
+  mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 160px 160px;
 }
 
 .dark .noise-overlay {
   opacity: 0.09;
+  mix-blend-mode: overlay;
 }
 
 .marquee-mask {
@@ -264,13 +283,13 @@
   white-space: nowrap;
   background: linear-gradient(
     180deg,
-    hsl(var(--foreground) / 0.08) 0%,
-    hsl(var(--foreground) / 0.02) 100%
+    hsl(var(--foreground) / 0.05) 0%,
+    hsl(var(--foreground) / 0.015) 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  -webkit-text-stroke: 1px hsl(var(--foreground) / 0.06);
+  -webkit-text-stroke: 1px hsl(var(--foreground) / 0.04);
 }
 
 .dark .brand-watermark {

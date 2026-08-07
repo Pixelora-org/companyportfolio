@@ -53,7 +53,7 @@ const Navigation = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 pt-[env(safe-area-inset-top)] transition-all duration-300",
         scrolled || isOpen
-          ? "border-b border-border bg-background/85 backdrop-blur-xl"
+          ? "border-b border-border bg-background/95 backdrop-blur-md dark:bg-background/85 dark:backdrop-blur-xl"
           : "bg-transparent"
       )}
     >
