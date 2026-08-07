@@ -8,7 +8,7 @@ const capabilities = [
     index: "01",
     title: "LLM product features",
     description:
-      "Chat, copilots, and generation flows that feel native to your product — not a bolted-on chatbot widget.",
+      "Chat, copilots, and generation flows that feel native to your product, not a bolted-on chatbot widget.",
     tags: ["OpenAI", "Anthropic", "Streaming UX"],
   },
   {
@@ -29,7 +29,7 @@ const capabilities = [
     index: "04",
     title: "Automation that ships",
     description:
-      "Agents and workflows that cut busywork — triage, summaries, routing — wired into real backend systems.",
+      "Agents and workflows that cut busywork like triage, summaries, and routing, wired into real backend systems.",
     tags: ["LangChain", "APIs", "Observability"],
   },
 ]
@@ -60,7 +60,7 @@ const AiCapabilitiesSection = () => {
           <Reveal delay={0.08}>
             <p className="max-w-xl text-[0.95rem] leading-relaxed text-muted-foreground sm:text-base md:text-lg">
               We don&apos;t sell AI hype. We design and engineer features that use
-              models where they earn their keep — clearer UX, faster ops, and
+              models where they earn their keep: clearer UX, faster ops, and
               outcomes you can measure.
             </p>
           </Reveal>
@@ -70,16 +70,16 @@ const AiCapabilitiesSection = () => {
           {capabilities.map((item, index) => (
             <Reveal key={item.title} delay={index * 0.06}>
               <li className="group border-b border-border">
-                <div className="grid gap-3 py-6 sm:grid-cols-[3.5rem_minmax(0,1.1fr)_minmax(0,1fr)] sm:items-start sm:gap-8 sm:py-8">
+                <div className="grid gap-3 py-5 sm:grid-cols-[3.5rem_minmax(0,1.1fr)_minmax(0,1fr)] sm:items-start sm:gap-8 sm:py-8">
                   <span className="font-mono text-xs tabular-nums tracking-wider text-lime sm:text-sm">
                     {item.index}
                   </span>
 
                   <div className="min-w-0">
-                    <h3 className="font-display text-xl font-bold tracking-[-0.02em] text-foreground sm:text-2xl md:text-[1.75rem]">
+                    <h3 className="font-display text-lg font-bold tracking-[-0.02em] text-foreground sm:text-2xl md:text-[1.75rem]">
                       {item.title}
                     </h3>
-                    <ul className="mt-3 flex list-none flex-wrap gap-1.5 p-0">
+                    <ul className="mt-2.5 flex list-none flex-wrap gap-1.5 p-0 sm:mt-3">
                       {item.tags.map((tag) => (
                         <li
                           key={tag}

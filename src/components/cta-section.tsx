@@ -34,7 +34,7 @@ const CTASection = () => {
             <span className="text-lime">Let&apos;s make it real.</span>
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-[0.95rem] text-muted-foreground sm:mt-5 sm:text-base">
-            Book a call or ping us on WhatsApp — tell us what you&apos;re
+            Book a call or ping us on WhatsApp. Tell us what you&apos;re
             building and we&apos;ll help you design, ship, and add AI where it
             counts.
           </p>
@@ -77,7 +77,7 @@ const CTASection = () => {
                 href={siteConfig.calendlyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-2xl border border-border bg-card p-5 text-left transition-colors hover:border-lime"
+                className="rounded-2xl border border-border bg-card p-4 text-left transition-colors hover:border-lime touch-manipulation sm:p-5"
               >
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-background text-lime">
                   <Calendar className="h-4 w-4" aria-hidden="true" />
@@ -94,7 +94,7 @@ const CTASection = () => {
               href={siteConfig.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-2xl border border-border bg-card p-5 text-left transition-colors hover:border-lime"
+              className="rounded-2xl border border-border bg-card p-4 text-left transition-colors hover:border-lime touch-manipulation sm:p-5"
             >
               <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-background text-lime">
                 <MessageCircle className="h-4 w-4" aria-hidden="true" />
@@ -108,7 +108,7 @@ const CTASection = () => {
             </a>
             <a
               href={`mailto:${siteConfig.email}`}
-              className="rounded-2xl border border-border bg-card p-5 text-left transition-colors hover:border-lime"
+              className="rounded-2xl border border-border bg-card p-4 text-left transition-colors hover:border-lime touch-manipulation sm:p-5"
             >
               <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-background text-lime">
                 <Mail className="h-4 w-4" aria-hidden="true" />
@@ -122,7 +122,7 @@ const CTASection = () => {
             </a>
             <a
               href={`tel:${siteConfig.phone.replace(/\s/g, "")}`}
-              className="rounded-2xl border border-border bg-card p-5 text-left transition-colors hover:border-lime"
+              className="rounded-2xl border border-border bg-card p-4 text-left transition-colors hover:border-lime touch-manipulation sm:p-5"
             >
               <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-background text-lime">
                 <Phone className="h-4 w-4" aria-hidden="true" />

@@ -4,161 +4,148 @@ export type ProjectKind = "product" | "client"
 export type Project = {
   id: string
   title: string
+  clientLabel: string
   description: string
   image: string
   alt: string
   width: number
   height: number
-  tech: string[]
+  services: string[]
   liveUrl: string | null
   githubUrl: string | null
   featured: boolean
   status: ProjectStatus
   kind: ProjectKind
-  problem?: string
-  solution?: string
+  brief: string
+  delivery: string
 }
 
 export const projects: Project[] = [
   {
     id: "moviefy",
     title: "Moviefy",
+    clientLabel: "Pixelora product",
     description:
-      "AI-assisted movie discovery that learns your taste and delivers a high-confidence pick in seconds — playlists, rankings, and daily recommendations without the endless scroll.",
+      "An AI movie discovery product from Pixelora: taste-aware picks, ranked lists, and daily recommendations that cut the endless scroll.",
     image: "/moviefy.webp",
     alt: "Moviefy homepage with movie posters and taste-based recommendation messaging",
     width: 1400,
     height: 875,
-    tech: ["Next.js", "TypeScript", "AI recommendations", "Tailwind CSS"],
+    services: ["Product design", "AI feature design", "Full-stack build"],
     liveUrl: "https://moviefy-gules.vercel.app/",
     githubUrl: null,
     featured: true,
     status: "Live",
     kind: "product",
-    problem:
-      "Streaming libraries are huge, but finding something you’ll actually watch still takes forever.",
-    solution:
-      "Built Moviefy as a Pixelora product — taste profiles, ranked lists, and fast daily picks that feel closer to a DJ than a dump of titles.",
+    brief:
+      "People waste time browsing huge streaming libraries and still struggle to choose something worth watching.",
+    delivery:
+      "Pixelora designed and shipped Moviefy end to end: taste profiles, confidence-ranked picks, and a fast daily recommendation experience.",
   },
   {
     id: "chirayu-health",
     title: "Chirayu Health Centre",
+    clientLabel: "Chirayu Health Awareness & Research Centre",
     description:
-      "Nonprofit site for Chirayu Health Awareness & Research Centre — programs, impact metrics, and donation/get-involved paths for community health work in Dharwad.",
+      "A public-facing digital presence for a Dharwad community health nonprofit: programs, impact, and clear paths to donate or get involved.",
     image: "/chirayu-health.webp",
     alt: "Chirayu Health Awareness & Research Centre homepage with community health messaging",
     width: 1400,
     height: 875,
-    tech: ["Next.js", "React", "Tailwind CSS", "Vercel"],
+    services: ["Brand web design", "Content structure", "Frontend engineering"],
     liveUrl: "https://ngowebsite-zeta.vercel.app/",
     githubUrl: null,
     featured: true,
     status: "Live",
     kind: "client",
-    problem:
-      "A community health NGO needed a credible site to explain programs and invite support.",
-    solution:
-      "Shipped a warm, accessible site with clear mission storytelling, program areas, and donate/get-involved CTAs.",
+    brief:
+      "The organization needed a credible web presence that could explain programs clearly and convert visitors into supporters.",
+    delivery:
+      "Pixelora led design and engineering for a warm, accessible site with mission storytelling, program areas, and donation / get-involved flows.",
   },
   {
     id: "korada-furniture",
     title: "Korada Furniture",
+    clientLabel: "Korada Furniture Co.",
     description:
-      "Marketing site for Korada Furniture Co. — office cabinets, lockers, and wardrobes with product categories, catalogue access, and enquiry flows for Karnataka buyers.",
+      "A conversion-focused brand site for a Karnataka furniture manufacturer: product categories, catalogue access, and enquiry-ready CTAs.",
     image: "/korada-furniture.webp",
     alt: "Korada Furniture website hero promoting premium office cabinets",
     width: 1400,
     height: 875,
-    tech: ["Next.js", "React", "Tailwind CSS", "Vercel"],
+    services: ["UI/UX", "Brand site build", "Lead capture UX"],
     liveUrl: "https://korada-furniture.vercel.app/",
     githubUrl: null,
     featured: false,
     status: "Live",
     kind: "client",
-    problem:
-      "A traditional furniture manufacturer needed a clean digital storefront that matched product quality.",
-    solution:
-      "Designed and shipped a fast brand site with category browsing, trust signals, and clear enquiry CTAs.",
+    brief:
+      "A traditional manufacturer needed a digital storefront that matched product quality and made B2B enquiries easy.",
+    delivery:
+      "Pixelora designed and launched a fast marketing site with category browsing, trust signals, and clear enquiry paths for buyers.",
   },
   {
     id: "dasara-developers",
     title: "Dasara Developers",
+    clientLabel: "Dasara Developers",
     description:
-      "Premium real-estate presence for Dasara Developers — project showcase, testimonials, and venture companies presented with a luxury, conversion-minded layout.",
+      "A premium real-estate web experience for project showcase, social proof, and related venture companies.",
     image: "/dasara-developers.webp",
     alt: "Dasara Developers projects page showcasing premium real estate listings",
     width: 1400,
     height: 875,
-    tech: ["Next.js", "React", "Tailwind CSS", "Vercel"],
+    services: ["Experience design", "Web engineering", "Conversion UX"],
     liveUrl: "https://realestate-lac-three.vercel.app/",
     githubUrl: null,
     featured: false,
     status: "Live",
     kind: "client",
-    problem:
-      "A developer brand needed a sharper digital front for projects, trust, and related ventures.",
-    solution:
-      "Built a project-led site structure that highlights inventory, social proof, and partner companies.",
+    brief:
+      "The developer brand needed a sharper digital front that could present inventory, build trust, and surface related ventures.",
+    delivery:
+      "Pixelora shipped a project-led site architecture with luxury visual language, testimonials, and clear paths into each venture.",
   },
   {
     id: "durgoji-studios",
     title: "Durgoji Studios",
+    clientLabel: "Durgoji Studios",
     description:
-      "Photography studio site for Durgoji Studios — weddings, product, maternity, and event services with booking-forward CTAs and a modern creative brand feel.",
+      "A booking-forward studio site for weddings, product, maternity, and event photography with a modern creative brand system.",
     image: "/durgoji-studios.webp",
     alt: "Durgoji Studios homepage with photography services and book-now call to action",
     width: 1400,
     height: 875,
-    tech: ["Next.js", "React", "Framer Motion", "Vercel"],
+    services: ["Creative direction", "UI design", "Frontend build"],
     liveUrl: "https://studioproejcts.vercel.app/",
     githubUrl: null,
     featured: false,
     status: "Live",
     kind: "client",
-    problem:
-      "A creative studio needed a portfolio-ready web presence that books enquiries, not just shows photos.",
-    solution:
-      "Crafted a cinematic marketing site with service clarity and prominent Book Now paths.",
-  },
-  {
-    id: "college-erp",
-    title: "College ERP System",
-    description:
-      "Comprehensive college management system with class scheduling, bus routes, and canteen management.",
-    image: "/collegeERP.webp",
-    alt: "College ERP system screens for class schedules, bus routes, and campus services",
-    width: 1400,
-    height: 683,
-    tech: ["React", "Express", "MySQL", "Node.js"],
-    liveUrl: null,
-    githubUrl: null,
-    featured: false,
-    status: "In Development",
-    kind: "client",
-    problem:
-      "Campus operations were fragmented across paper processes and disconnected tools.",
-    solution:
-      "Building a unified ERP covering schedules, transport, and campus services in one system.",
+    brief:
+      "The studio needed a web presence that books enquiries, not just a gallery of past work.",
+    delivery:
+      "Pixelora crafted a cinematic marketing experience with clear service categories and prominent booking CTAs.",
   },
   {
     id: "portfolio-website",
-    title: "Portfolio Website",
+    title: "Creator Brand Site",
+    clientLabel: "Independent creative client",
     description:
-      "Modern, responsive portfolio website showcasing creative work and professional services.",
+      "A motion-rich personal brand website for a creative professional: project storytelling, services, and a polished first impression.",
     image: "/prajwalportoflio.webp",
-    alt: "Personal portfolio website homepage with project showcase layout",
+    alt: "Personal brand website homepage with project showcase layout",
     width: 1400,
     height: 682,
-    tech: ["Next.js", "Tailwind CSS", "Framer Motion", "TypeScript"],
+    services: ["Brand UX", "Motion design", "Frontend engineering"],
     liveUrl: null,
     githubUrl: null,
     featured: false,
     status: "In Development",
     kind: "client",
-    problem:
-      "Needed a clean personal brand site that showcased work without feeling like a template.",
-    solution:
-      "Designed and built a motion-rich portfolio with clear hierarchy and project storytelling.",
+    brief:
+      "The client needed a personal brand site that felt custom and premium, not like a recycled portfolio template.",
+    delivery:
+      "Pixelora is designing and building a motion-led brand site with clear hierarchy, project narratives, and service positioning.",
   },
 ]
 

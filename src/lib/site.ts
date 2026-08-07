@@ -6,15 +6,15 @@ export const siteConfig = {
   email: "abhishekvaidya.work@gmail.com",
   phone: "+91 9591020880",
   phoneE164,
-  /** Set in .env.local — e.g. https://calendly.com/your-name/30min */
+  /** Set in .env.local, e.g. https://calendly.com/your-name/30min */
   calendlyUrl: process.env.NEXT_PUBLIC_CALENDLY_URL?.trim() || "",
   whatsappUrl: `https://wa.me/${phoneE164}?text=${encodeURIComponent(
-    "Hi Pixelora — I'd like to talk about a project."
+    "Hi Pixelora, I'd like to talk about a project."
   )}`,
   locale: "en_US",
-  title: "Pixelora — AI Product Design & Development Agency",
+  title: "Pixelora | AI Product Design & Development Agency",
   description:
-    "Pixelora is a design and development agency that builds AI-ready websites, apps, and intelligent product features — sharp UI, modern engineering, and practical AI that ships.",
+    "Pixelora is a design and development agency that builds AI-ready websites, apps, and intelligent product features with sharp UI, modern engineering, and practical AI that ships.",
   keywords: [
     "AI product agency",
     "AI web development",

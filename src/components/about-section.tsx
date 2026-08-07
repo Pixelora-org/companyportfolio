@@ -10,7 +10,7 @@ const features = [
     title: "Creative Design",
     tag: "Brand + UI",
     description:
-      "Interfaces with taste — sharp hierarchy, motion, and brand that sticks in someone’s head after one scroll.",
+      "Interfaces with taste: sharp hierarchy, motion, and brand that sticks in someone’s head after one scroll.",
   },
   {
     title: "Technical Excellence",
@@ -22,7 +22,7 @@ const features = [
     title: "Performance Focused",
     tag: "Speed",
     description:
-      "Obsessed with load time and feel — smooth interactions, lean bundles, shipping quality that reads premium.",
+      "Obsessed with load time and feel: smooth interactions, lean bundles, and shipping quality that reads premium.",
   },
   {
     title: "Security First",
@@ -60,7 +60,7 @@ const AboutSection = () => {
           <Reveal delay={0.08}>
             <div className="space-y-3 text-[0.95rem] leading-relaxed text-muted-foreground sm:space-y-4 sm:text-base md:text-lg">
               <p>
-                We bring ideas to life through design and technology — sleek,
+                We bring ideas to life through design and technology: sleek,
                 responsive websites and dynamic apps that don&apos;t just look
                 good. They perform.
               </p>

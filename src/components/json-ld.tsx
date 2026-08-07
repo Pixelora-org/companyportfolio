@@ -33,7 +33,7 @@ export default function JsonLd() {
       name: siteConfig.name,
       url: siteConfig.url,
     },
-    keywords: project.tech.join(", "),
+    keywords: project.services.join(", "),
     ...(project.status === "Live" && project.liveUrl
       ? { mainEntityOfPage: project.liveUrl }
       : {}),

@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react"
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion"
-import { ExternalLink, X } from "lucide-react"
+import { ArrowUpRight, ExternalLink, X } from "lucide-react"
 import Reveal from "@/components/reveal"
 import ProjectImage from "@/components/project-image"
 import { projects, type Project } from "@/lib/projects"
@@ -24,12 +24,12 @@ function ProjectCard({
   onOpen: (project: Project) => void
 }) {
   return (
-    <article className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
+    <article className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-colors hover:border-lime/40">
       <button
         type="button"
         onClick={() => onOpen(project)}
         className="block w-full text-left touch-manipulation"
-        aria-label={`Open case study for ${project.title}`}
+        aria-label={`Open engagement details for ${project.title}`}
       >
         <div className="relative aspect-[16/10] sm:aspect-video">
           <ProjectImage
@@ -40,64 +40,74 @@ function ProjectCard({
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 560px"
           />
           <div
-            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/55 to-transparent opacity-70"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/70 via-background/10 to-transparent"
             aria-hidden="true"
           />
-          <span
-            className={cn(
-              "absolute left-3 top-3 rounded-md px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wide",
-              project.kind === "product"
-                ? "bg-lime text-lime-foreground"
-                : "bg-background/85 text-foreground backdrop-blur"
-            )}
-          >
-            {project.kind === "product" ? "Product" : "Client"}
-          </span>
+          <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">
+            <span
+              className={cn(
+                "rounded-md px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wide",
+                project.kind === "product"
+                  ? "bg-lime text-lime-foreground"
+                  : "bg-background/85 text-foreground backdrop-blur"
+              )}
+            >
+              {project.kind === "product" ? "Product" : "Client"}
+            </span>
+            <span
+              className={cn(
+                "rounded-md px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wide backdrop-blur",
+                project.status === "Live"
+                  ? "bg-emerald-500/20 text-emerald-700 dark:text-emerald-300"
+                  : "bg-amber-500/20 text-amber-800 dark:text-amber-300"
+              )}
+            >
+              {project.status === "In Development" ? "In progress" : project.status}
+            </span>
+          </div>
         </div>
       </button>
 
-      <div className="p-3.5 sm:p-4">
-        <div className="mb-2 flex items-start justify-between gap-2 sm:gap-3">
-          <h3 className="font-display text-[0.95rem] font-semibold leading-snug text-card-foreground sm:text-lg">
+      <div className="p-3.5 sm:p-5">
+        <p className="truncate font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+          {project.clientLabel}
+        </p>
+        <div className="mt-1.5 flex items-start justify-between gap-3">
+          <h3 className="min-w-0 font-display text-[1.05rem] font-semibold leading-snug text-card-foreground sm:text-xl">
             {project.title}
           </h3>
-          <span
-            className={cn(
-              "shrink-0 rounded-md px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide sm:text-[11px]",
-              project.status === "Live"
-                ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-300"
-                : "bg-amber-500/15 text-amber-700 dark:text-amber-300"
-            )}
+          <button
+            type="button"
+            onClick={() => onOpen(project)}
+            className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border text-foreground transition-colors hover:border-lime hover:text-lime touch-manipulation"
+            aria-label={`Open details for ${project.title}`}
           >
-            <span className="sm:hidden">
-              {project.status === "In Development" ? "Soon" : project.status}
-            </span>
-            <span className="hidden sm:inline">{project.status}</span>
-          </span>
+            <ArrowUpRight className="h-4 w-4" />
+          </button>
         </div>
 
-        <p className="text-sm leading-relaxed text-muted-foreground line-clamp-3">
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground line-clamp-3">
           {project.description}
         </p>
 
-        <ul className="mt-3 flex list-none flex-wrap gap-1.5 p-0">
-          {project.tech.map((tech) => (
+        <ul className="mt-3.5 flex list-none flex-wrap gap-1.5 p-0">
+          {project.services.slice(0, 3).map((service) => (
             <li
-              key={tech}
-              className="rounded-md border border-border bg-muted/50 px-2 py-0.5 text-[11px] text-muted-foreground"
+              key={service}
+              className="rounded-md border border-border/80 bg-muted/40 px-2 py-0.5 text-[11px] text-muted-foreground"
             >
-              {tech}
+              {service}
             </li>
           ))}
         </ul>
 
-        <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
+        <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-border pt-3.5">
           <button
             type="button"
             onClick={() => onOpen(project)}
             className="min-h-10 text-sm font-medium text-foreground underline-offset-4 hover:underline touch-manipulation sm:min-h-0"
           >
-            Case study
+            View engagement
           </button>
           {project.liveUrl ? (
             <a
@@ -106,8 +116,8 @@ function ProjectCard({
               rel="noopener noreferrer"
               className="inline-flex min-h-10 items-center text-sm font-medium text-lime touch-manipulation sm:min-h-0"
             >
-              <ExternalLink className="mr-1 h-3.5 w-3.5" aria-hidden="true" />
-              View Project
+              Visit site
+              <ExternalLink className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
               <span className="sr-only"> (opens {project.title} in a new tab)</span>
             </a>
           ) : null}
@@ -186,16 +196,20 @@ const ProjectsSection = () => {
         <div className="relative flex flex-col gap-5 sm:gap-6 sm:flex-row sm:items-end sm:justify-between">
           <Reveal>
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-lime">
-              Products &amp; client work
+              Studio work
             </p>
             <h2
               id="work-heading"
               className="mt-3 font-display text-3xl font-extrabold tracking-[-0.03em] text-foreground sm:text-4xl md:text-5xl"
             >
-              What we&apos;re
+              Selected
               <br />
-              <span className="text-muted-foreground">building &amp; shipping.</span>
+              <span className="text-muted-foreground">engagements.</span>
             </h2>
+            <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-[0.95rem]">
+              Product builds and client websites designed and engineered by the
+              Pixelora team.
+            </p>
           </Reveal>
 
           <LayoutGroup>
@@ -245,14 +259,15 @@ const ProjectsSection = () => {
                     <div className="mb-5 flex items-end justify-between gap-4">
                       <div>
                         <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-lime">
-                          Pixelora products
+                          In-house
                         </p>
                         <h3 className="mt-1 font-display text-xl font-bold text-foreground sm:text-2xl">
-                          Our own products
+                          Pixelora products
                         </h3>
                       </div>
                       <p className="hidden max-w-xs text-right text-xs text-muted-foreground sm:block">
-                        AI-native tools we&apos;re designing, building, and shipping in-house.
+                        AI-native products we design, build, and ship under the
+                        Pixelora name.
                       </p>
                     </div>
                   </Reveal>
@@ -265,14 +280,15 @@ const ProjectsSection = () => {
                     <div className="mb-5 flex items-end justify-between gap-4">
                       <div>
                         <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                          Client engagements
+                          Client delivery
                         </p>
                         <h3 className="mt-1 font-display text-xl font-bold text-foreground sm:text-2xl">
-                          Selected client work
+                          Brand &amp; product work
                         </h3>
                       </div>
                       <p className="hidden max-w-xs text-right text-xs text-muted-foreground sm:block">
-                        Brand sites and product experiences shipped for real businesses.
+                        Web experiences shipped for businesses, nonprofits, and
+                        creative brands.
                       </p>
                     </div>
                   </Reveal>
@@ -289,7 +305,7 @@ const ProjectsSection = () => {
       <AnimatePresence>
         {active && (
           <motion.div
-            className="fixed inset-0 z-[60] flex items-end justify-center bg-background/70 p-0 backdrop-blur-sm sm:items-center sm:p-4"
+            className="fixed inset-0 z-[60] flex items-end justify-center bg-background/75 p-0 backdrop-blur-md sm:items-center sm:p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -303,47 +319,56 @@ const ProjectsSection = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 24 }}
               transition={{ duration: 0.28 }}
-              className="max-h-[92svh] w-full max-w-2xl overflow-y-auto rounded-t-3xl border border-border bg-card shadow-2xl sm:max-h-[90vh] sm:rounded-2xl"
+              className="max-h-[92svh] w-full max-w-3xl overflow-y-auto rounded-t-3xl border border-border bg-card shadow-2xl sm:max-h-[90vh] sm:rounded-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="sticky top-0 z-10 flex justify-center bg-card/80 py-2 backdrop-blur sm:hidden">
                 <span className="h-1 w-10 rounded-full bg-border" aria-hidden="true" />
               </div>
 
-              <div className="relative aspect-[16/10] overflow-hidden sm:aspect-video">
+              <div className="relative aspect-[16/10] overflow-hidden sm:aspect-[2/1]">
                 <ProjectImage
                   src={active.image}
                   alt={active.alt}
                   className="absolute inset-0 h-full w-full"
-                  sizes="(max-width: 768px) 100vw, 672px"
+                  sizes="(max-width: 768px) 100vw, 768px"
                   priority
+                />
+                <div
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent"
+                  aria-hidden="true"
                 />
                 <button
                   type="button"
                   onClick={() => setActive(null)}
-                  className="absolute right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-background/80 text-foreground backdrop-blur touch-manipulation"
-                  aria-label="Close case study"
+                  className="absolute right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-background/85 text-foreground backdrop-blur touch-manipulation"
+                  aria-label="Close engagement details"
                 >
                   <X className="h-4 w-4" />
                 </button>
               </div>
 
-              <div className="space-y-5 p-4 pb-[max(1.25rem,env(safe-area-inset-bottom))] sm:p-6">
+              <div className="space-y-6 p-4 pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:p-7">
                 <div className="flex flex-wrap items-start justify-between gap-3">
-                  <div>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-lime">
-                      {active.kind === "product" ? "Pixelora product" : "Client work"}
+                  <div className="min-w-0">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-lime">
+                      {active.kind === "product"
+                        ? "Pixelora product"
+                        : "Client engagement"}
                     </p>
                     <h3
                       id="project-modal-title"
-                      className="mt-1 font-display text-xl font-semibold text-card-foreground sm:text-2xl"
+                      className="mt-1 font-display text-2xl font-semibold tracking-[-0.02em] text-card-foreground sm:text-3xl"
                     >
                       {active.title}
                     </h3>
+                    <p className="mt-1 text-sm text-muted-foreground">
+                      {active.clientLabel}
+                    </p>
                   </div>
                   <span
                     className={cn(
-                      "rounded-md px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide",
+                      "rounded-md px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide",
                       active.status === "Live"
                         ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-300"
                         : "bg-amber-500/15 text-amber-700 dark:text-amber-300"
@@ -353,62 +378,72 @@ const ProjectsSection = () => {
                   </span>
                 </div>
 
-                <p className="text-sm leading-relaxed text-muted-foreground">
+                <p className="max-w-2xl text-[0.95rem] leading-relaxed text-muted-foreground">
                   {active.description}
                 </p>
 
-                <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
-                  <div className="rounded-xl border border-border bg-muted/40 p-4">
-                    <h4 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                      Problem
+                <div className="grid gap-0 overflow-hidden rounded-2xl border border-border sm:grid-cols-2">
+                  <div className="border-b border-border p-4 sm:border-b-0 sm:border-r sm:p-5">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-lime">
+                      01
+                    </p>
+                    <h4 className="mt-2 font-display text-sm font-semibold text-foreground">
+                      The brief
                     </h4>
-                    <p className="mt-2 text-sm text-foreground">
-                      {active.problem ??
-                        "Business needed a modern digital product to replace outdated workflows."}
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {active.brief}
                     </p>
                   </div>
-                  <div className="rounded-xl border border-border bg-muted/40 p-4">
-                    <h4 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                      Solution
+                  <div className="p-4 sm:p-5">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-lime">
+                      02
+                    </p>
+                    <h4 className="mt-2 font-display text-sm font-semibold text-foreground">
+                      What Pixelora delivered
                     </h4>
-                    <p className="mt-2 text-sm text-foreground">
-                      {active.solution ??
-                        "Pixelora designed and engineered a tailored web experience focused on speed, clarity, and conversion."}
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {active.delivery}
                     </p>
                   </div>
                 </div>
 
                 <div>
-                  <h4 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                    Tech used
+                  <h4 className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+                    Scope
                   </h4>
-                  <ul className="mt-2 flex list-none flex-wrap gap-1.5 p-0">
-                    {active.tech.map((tech) => (
+                  <ul className="mt-2.5 flex list-none flex-wrap gap-1.5 p-0">
+                    {active.services.map((service) => (
                       <li
-                        key={tech}
-                        className="rounded-md border border-border bg-background px-2.5 py-1 text-xs text-foreground"
+                        key={service}
+                        className="rounded-md bg-lime/12 px-2.5 py-1 text-xs font-medium text-foreground"
                       >
-                        {tech}
+                        {service}
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                {active.liveUrl ? (
-                  <a
-                    href={active.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-foreground px-4 py-2.5 text-sm font-semibold text-background transition-colors hover:bg-lime hover:text-lime-foreground touch-manipulation sm:w-auto"
-                  >
-                    <ExternalLink className="mr-2 h-4 w-4" aria-hidden="true" />
-                    View live project
-                  </a>
-                ) : (
-                  <p className="text-sm text-muted-foreground">
-                    Live link coming soon — currently in development.
+                <div className="flex flex-col gap-3 border-t border-border pt-5 sm:flex-row sm:items-center sm:justify-between">
+                  <p className="text-xs text-muted-foreground">
+                    Designed &amp; engineered by{" "}
+                    <span className="font-medium text-foreground">Pixelora</span>
                   </p>
-                )}
+                  {active.liveUrl ? (
+                    <a
+                      href={active.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition-colors hover:bg-lime hover:text-lime-foreground touch-manipulation sm:w-auto"
+                    >
+                      Visit live site
+                      <ExternalLink className="ml-2 h-4 w-4" aria-hidden="true" />
+                    </a>
+                  ) : (
+                    <p className="text-sm text-muted-foreground">
+                      Live link coming soon. Currently in development.
+                    </p>
+                  )}
+                </div>
               </div>
             </motion.div>
           </motion.div>

@@ -60,7 +60,7 @@ export const metadata: Metadata = {
         url: siteConfig.ogImage,
         width: 1918,
         height: 1000,
-        alt: "Moviefy — AI movie discovery product by Pixelora",
+        alt: "Moviefy, AI movie discovery product by Pixelora",
       },
     ],
   },
@@ -75,6 +75,7 @@ export const metadata: Metadata = {
 export const viewport = {
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover" as const,
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#F7F5F0" },
     { media: "(prefers-color-scheme: dark)", color: "#070D0B" },

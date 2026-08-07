@@ -84,7 +84,7 @@ const HeroSection = () => {
     <section
       ref={sectionRef}
       aria-label="Hero"
-      className="relative flex min-h-[100svh] items-center overflow-hidden"
+      className="relative flex min-h-[100svh] items-center overflow-x-clip overflow-y-visible"
     >
       <div className="hero-mesh" aria-hidden="true">
         <div className="blob" />
@@ -111,13 +111,13 @@ const HeroSection = () => {
         </p>
       </motion.div>
 
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl gap-8 px-4 pb-28 pt-24 sm:gap-10 sm:px-6 sm:pb-24 sm:pt-28 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:gap-8 lg:px-8 lg:pb-24 lg:pt-32">
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl gap-6 px-4 pb-[5.5rem] pt-[calc(4.5rem+env(safe-area-inset-top))] sm:gap-10 sm:px-6 sm:pb-24 sm:pt-28 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:gap-8 lg:px-8 lg:pb-24 lg:pt-32">
         <div className="min-w-0">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="mb-4 inline-flex max-w-full items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground sm:mb-6 sm:text-[11px] sm:tracking-[0.22em]"
+            className="mb-3 inline-flex max-w-full items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground sm:mb-6 sm:text-[11px] sm:tracking-[0.22em]"
           >
             <span className="relative flex h-2 w-2 shrink-0">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-lime opacity-60" />
@@ -126,10 +126,10 @@ const HeroSection = () => {
             <span className="truncate">AI product design &amp; engineering</span>
           </motion.div>
 
-          <h1 className="font-display text-[clamp(2.15rem,9.5vw,5.6rem)] font-extrabold leading-[0.95] tracking-[-0.04em] text-foreground sm:leading-[0.92]">
+          <h1 className="font-display text-[clamp(2rem,9vw,5.6rem)] font-extrabold leading-[0.96] tracking-[-0.04em] text-foreground sm:text-[clamp(2.15rem,9.5vw,5.6rem)] sm:leading-[0.92]">
             <span className="block">
               We{" "}
-              <span className="relative inline-block min-w-[4.6ch] align-bottom text-lime sm:min-w-[3em]">
+              <span className="relative inline-block min-w-[5ch] align-bottom text-lime sm:min-w-[3em]">
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={rotatingWords[wordIndex]}
@@ -144,7 +144,7 @@ const HeroSection = () => {
                 </AnimatePresence>
               </span>
             </span>
-            <span className="mt-1 block">AI-ready products</span>
+            <span className="mt-1 block">AI-ready products,</span>
             <span className="mt-1 block text-muted-foreground">
               websites, apps &amp;{" "}
               <span className="text-foreground underline decoration-hot decoration-[0.1em] underline-offset-[0.18em] sm:underline-offset-4">
@@ -158,10 +158,10 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.45, duration: 0.55 }}
-            className="mt-5 max-w-lg text-[0.95rem] leading-relaxed text-muted-foreground sm:mt-6 sm:text-lg"
+            className="mt-4 max-w-lg text-[0.95rem] leading-relaxed text-muted-foreground sm:mt-6 sm:text-lg"
           >
             Pixelora is a design &amp; development agency that builds sharp
-            interfaces and practical AI — copilots, automation, and LLM features
+            interfaces and practical AI like copilots, automation, and LLM features
             that feel native to the product, not bolted on.
           </motion.p>
 
@@ -169,7 +169,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.55 }}
-            className="mt-7 flex w-full flex-col gap-3 sm:mt-8 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center"
+            className="mt-6 flex w-full flex-col gap-2.5 sm:mt-8 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:gap-3"
           >
             <MagneticButton
               onClick={() => openExternal(primaryBookingUrl)}
@@ -215,15 +215,15 @@ const HeroSection = () => {
             )}
           </motion.div>
 
-          {/* Mobile project strip — desktop uses floating cards */}
+          {/* Mobile project strip; desktop uses floating cards */}
           {preview.length > 0 && (
-            <div className="mt-8 -mx-4 flex gap-3 overflow-x-auto px-4 pb-1 [scrollbar-width:none] lg:hidden [&::-webkit-scrollbar]:hidden">
+            <div className="mt-6 -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mt-8 lg:hidden [&::-webkit-scrollbar]:hidden">
               {preview.map((project) => (
                 <button
                   key={project.id}
                   type="button"
                   onClick={scrollToWork}
-                  className="w-[78%] max-w-[280px] shrink-0 overflow-hidden rounded-2xl border border-border bg-card text-left touch-manipulation sm:w-[60%]"
+                  className="w-[82%] max-w-[280px] shrink-0 snap-center overflow-hidden rounded-2xl border border-border bg-card text-left touch-manipulation sm:w-[60%]"
                 >
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <ProjectImage
@@ -277,7 +277,7 @@ const HeroSection = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
                 <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-2">
                   <span className="font-display text-sm font-bold text-foreground">
-                    {project.title.split("—")[0].trim()}
+                    {project.title}
                   </span>
                   <span
                     className={
@@ -295,7 +295,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 z-10 border-t border-border/70 bg-background/50 backdrop-blur-md">
+      <div className="absolute bottom-0 left-0 right-0 z-10 border-t border-border/70 bg-background/50 pb-[env(safe-area-inset-bottom)] backdrop-blur-md">
         <div
           className="marquee-track marquee-mask overflow-hidden py-2.5 sm:py-3"
           aria-label="Technologies we use"

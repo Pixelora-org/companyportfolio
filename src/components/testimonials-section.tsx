@@ -184,7 +184,7 @@ const TestimonialsSection = () => {
               {status === "success" && (
                 <p className="flex items-center justify-center gap-2 text-sm text-emerald-600 dark:text-emerald-300">
                   <CheckCircle2 className="h-4 w-4" />
-                  Thanks — your feedback was saved.
+                  Thanks, your feedback was saved.
                 </p>
               )}
               {status === "error" && serverError && (
