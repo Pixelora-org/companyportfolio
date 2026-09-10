@@ -43,6 +43,48 @@ export const projects: Project[] = [
       "Pixelora designed and shipped Moviefy end to end: taste profiles, confidence-ranked picks, and a fast daily recommendation experience.",
   },
   {
+    id: "jobtracker",
+    title: "JobTracker",
+    clientLabel: "Pixelora product",
+    description:
+      "A focused job application tracker from Pixelora: organize applications, track status updates, and stay on top of your job search progress.",
+    image: "/jobtracker.webp",
+    alt: "JobTracker dashboard showing job applications organized by status with clean tracking interface",
+    width: 1400,
+    height: 875,
+    services: ["Product design", "Full-stack development", "Data management"],
+    liveUrl: "https://jobtracker-kohl-mu.vercel.app",
+    githubUrl: "https://github.com/Pixelora-org/JobTracker",
+    featured: true,
+    status: "Live",
+    kind: "product",
+    brief:
+      "Job seekers lose track of applications, miss follow-ups, and struggle to maintain momentum across multiple opportunities.",
+    delivery:
+      "Pixelora built JobTracker to streamline the search: a clean status board, application notes, and progress tracking that turns chaos into clarity.",
+  },
+  {
+    id: "safaisetu",
+    title: "SafaiSetu",
+    clientLabel: "Pixelora product",
+    description:
+      "A live, map-centered hub for India's civic cleanup movement: track river health, discover cleanup organizations, and join this weekend's drives.",
+    image: "/safaisetu.webp",
+    alt: "SafaiSetu map interface showing cleanup locations and environmental initiatives across India",
+    width: 1400,
+    height: 875,
+    services: ["Product design", "Interactive mapping", "Full-stack build"],
+    liveUrl: null,
+    githubUrl: "https://github.com/Pixelora-org/SafaiSetu",
+    featured: false,
+    status: "In Development",
+    kind: "product",
+    brief:
+      "People want to help with environmental cleanup but don't know where to start, who's organizing, or how their efforts fit the bigger picture.",
+    delivery:
+      "Pixelora is building SafaiSetu as a national clearinghouse: live stats, organization directory, featured stories, and a this-weekend CTA that turns intent into action.",
+  },
+  {
     id: "chirayu-health",
     title: "Chirayu Health Centre",
     clientLabel: "Chirayu Health Awareness & Research Centre",
@@ -90,12 +132,12 @@ export const projects: Project[] = [
     clientLabel: "Dasara Developers",
     description:
       "A premium real-estate web experience for project showcase, social proof, and related venture companies.",
-    image: "/dasara-developers.webp",
-    alt: "Dasara Developers projects page showcasing premium real estate listings",
+    image: "/dasara-developers-new.webp",
+    alt: "Dasara Developers website showcasing premium real estate projects and ventures",
     width: 1400,
     height: 875,
     services: ["Experience design", "Web engineering", "Conversion UX"],
-    liveUrl: "https://realestate-lac-three.vercel.app/",
+    liveUrl: "https://dasara-web.vercel.app",
     githubUrl: null,
     featured: false,
     status: "Live",
@@ -104,6 +146,27 @@ export const projects: Project[] = [
       "The developer brand needed a sharper digital front that could present inventory, build trust, and surface related ventures.",
     delivery:
       "Pixelora shipped a project-led site architecture with luxury visual language, testimonials, and clear paths into each venture.",
+  },
+  {
+    id: "dasrahn-realestate",
+    title: "Dasrahn Properties",
+    clientLabel: "Dasrahn Real Estate",
+    description:
+      "A conversion-focused property listing platform with modern search, detailed project pages, and streamlined enquiry flows for buyers.",
+    image: "/dasrahn-realestate.webp",
+    alt: "Dasrahn real estate platform with property listings and search functionality",
+    width: 1400,
+    height: 875,
+    services: ["UI/UX design", "Web development", "Lead generation"],
+    liveUrl: "https://realestate-lac-three.vercel.app/",
+    githubUrl: null,
+    featured: false,
+    status: "Live",
+    kind: "client",
+    brief:
+      "The real estate venture needed a digital platform that could showcase properties clearly and convert browsers into qualified leads.",
+    delivery:
+      "Pixelora delivered a clean property portal with intuitive search, rich listing detail, and contact paths that guide visitors from browse to enquiry.",
   },
   {
     id: "durgoji-studios",
