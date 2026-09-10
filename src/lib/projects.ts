@@ -43,25 +43,25 @@ export const projects: Project[] = [
       "Pixelora designed and shipped Moviefy end to end: taste profiles, confidence-ranked picks, and a fast daily recommendation experience.",
   },
   {
-    id: "jobtracker",
-    title: "JobTracker",
+    id: "pipeline",
+    title: "Pipeline",
     clientLabel: "Pixelora product",
     description:
-      "A focused job application tracker from Pixelora: organize applications, track status updates, and stay on top of your job search progress.",
+      "An AI-powered job search command center from Pixelora: paste a posting or cold email, AI fills the record, and a daily plan keeps score across every application.",
     image: "/jobtracker.webp",
-    alt: "JobTracker dashboard showing job applications organized by status with clean tracking interface",
+    alt: "Pipeline dashboard with AI-assisted job application tracking, status lanes, and daily planning interface",
     width: 1400,
     height: 875,
-    services: ["Product design", "Full-stack development", "Data management"],
+    services: ["Product design", "AI feature design", "Full-stack build"],
     liveUrl: "https://jobtracker-kohl-mu.vercel.app",
     githubUrl: "https://github.com/Pixelora-org/JobTracker",
     featured: true,
     status: "Live",
     kind: "product",
     brief:
-      "Job seekers lose track of applications, miss follow-ups, and struggle to maintain momentum across multiple opportunities.",
+      "Job seekers waste time copying details between tabs, lose track of what they applied to, and never follow up because there's no system to keep score.",
     delivery:
-      "Pixelora built JobTracker to streamline the search: a clean status board, application notes, and progress tracking that turns chaos into clarity.",
+      "Pixelora designed and launched Pipeline: paste a job link or cold outreach, the AI extracts title/company/location, organize by status, and a daily view that turns scattered effort into trackable momentum.",
   },
   {
     id: "safaisetu",
@@ -138,7 +138,7 @@ export const projects: Project[] = [
     height: 875,
     services: ["Experience design", "Web engineering", "Conversion UX"],
     liveUrl: "https://dasara-web.vercel.app",
-    githubUrl: null,
+    githubUrl: "https://github.com/Pixelora-org/DasraraDevelopers",
     featured: false,
     status: "Live",
     kind: "client",
@@ -146,27 +146,6 @@ export const projects: Project[] = [
       "The developer brand needed a sharper digital front that could present inventory, build trust, and surface related ventures.",
     delivery:
       "Pixelora shipped a project-led site architecture with luxury visual language, testimonials, and clear paths into each venture.",
-  },
-  {
-    id: "dasrahn-realestate",
-    title: "Dasrahn Properties",
-    clientLabel: "Dasrahn Real Estate",
-    description:
-      "A conversion-focused property listing platform with modern search, detailed project pages, and streamlined enquiry flows for buyers.",
-    image: "/dasrahn-realestate.webp",
-    alt: "Dasrahn real estate platform with property listings and search functionality",
-    width: 1400,
-    height: 875,
-    services: ["UI/UX design", "Web development", "Lead generation"],
-    liveUrl: "https://realestate-lac-three.vercel.app/",
-    githubUrl: null,
-    featured: false,
-    status: "Live",
-    kind: "client",
-    brief:
-      "The real estate venture needed a digital platform that could showcase properties clearly and convert browsers into qualified leads.",
-    delivery:
-      "Pixelora delivered a clean property portal with intuitive search, rich listing detail, and contact paths that guide visitors from browse to enquiry.",
   },
   {
     id: "durgoji-studios",
