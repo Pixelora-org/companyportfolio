@@ -33,7 +33,7 @@ export const projects: Project[] = [
     height: 875,
     services: ["Product design", "AI feature design", "Full-stack build"],
     liveUrl: "https://moviefy-gules.vercel.app/",
-    githubUrl: null,
+    githubUrl: "https://github.com/Pixelora-org/moviefy",
     featured: true,
     status: "Live",
     kind: "product",
@@ -74,15 +74,15 @@ export const projects: Project[] = [
     width: 1400,
     height: 875,
     services: ["Product design", "Interactive mapping", "Full-stack build"],
-    liveUrl: null,
+    liveUrl: "https://safaisetu-peach.vercel.app",
     githubUrl: "https://github.com/Pixelora-org/SafaiSetu",
     featured: false,
-    status: "In Development",
+    status: "Live",
     kind: "product",
     brief:
       "People want to help with environmental cleanup but don't know where to start, who's organizing, or how their efforts fit the bigger picture.",
     delivery:
-      "Pixelora is building SafaiSetu as a national clearinghouse: live stats, organization directory, featured stories, and a this-weekend CTA that turns intent into action.",
+      "Pixelora shipped SafaiSetu as a national clearinghouse: live stats, organization directory, featured stories, and a this-weekend CTA that turns intent into action.",
   },
   {
     id: "chirayu-health",
