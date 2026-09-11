@@ -70,7 +70,7 @@ export const projects: Project[] = [
     description:
       "A live, map-centered hub for India's civic cleanup movement: track river health, discover cleanup organizations, and join this weekend's drives.",
     image: "/safaisetu.webp",
-    alt: "SafaiSetu map interface showing cleanup locations and environmental initiatives across India",
+    alt: "SafaiSetu homepage hero with live statistics and map access call to action",
     width: 1400,
     height: 875,
     services: ["Product design", "Interactive mapping", "Full-stack build"],
