@@ -85,6 +85,27 @@ export const projects: Project[] = [
       "Pixelora shipped SafaiSetu as a national clearinghouse: live stats, organization directory, featured stories, and a this-weekend CTA that turns intent into action.",
   },
   {
+    id: "phirse",
+    title: "Phir Se",
+    clientLabel: "Pixelora product",
+    description:
+      "A household recycling tracker for India: residents log scrap by category and weight, earn redeemable points, and partners see real-time margin data.",
+    image: "/phirse.webp",
+    alt: "Phir Se resident view showing recycling categories, points tracking, and voucher redemption interface",
+    width: 1400,
+    height: 875,
+    services: ["Product design", "Full-stack build", "Dual-interface UX"],
+    liveUrl: "https://phirse-seven.vercel.app",
+    githubUrl: "https://github.com/Pixelora-org/PhirSe",
+    featured: false,
+    status: "Live",
+    kind: "product",
+    brief:
+      "Households want to recycle responsibly but lack incentives and tracking, while collection partners need transparent margin visibility to scale operations.",
+    delivery:
+      "Pixelora designed and shipped Phir Se: a dual-view product where residents track drop-offs by material category, earn points toward grocery vouchers, and partners monitor revenue in real time.",
+  },
+  {
     id: "chirayu-health",
     title: "Chirayu Health Centre",
     clientLabel: "Chirayu Health Awareness & Research Centre",
